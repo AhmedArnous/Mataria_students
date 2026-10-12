@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b4f9c">
+  <meta name="description" content="الموقع التعريفي لاتحاد طلاب إدارة المطرية دقهلية التعليمية">
+  <title>اتحاد طلاب إدارة المطرية دقهلية التعليمية</title>
+  <style>
+    :root {
+      --blue: #0b4f9c;
+      --blue-dark: #07366b;
+      --blue-light: #eaf4ff;
+      --sky: #3d91ed;
+      --text: #17324f;
+      --muted: #62758a;
+      --white: #ffffff;
+      --border: #dce8f4;
+      --shadow: 0 12px 32px rgba(11, 79, 156, .10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Tahoma, Arial, sans-serif;
+      background: #f7faff;
+      color: var(--text);
+      line-height: 1.8;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .container { width: min(1100px, 92%); margin-inline: auto; }
+    .topline { height: 5px; background: linear-gradient(90deg, #69b7ff, var(--blue), #07366b); }
+    header {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(255,255,255,.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; color: var(--blue-dark); }
+    .brand-mark {
+      width: 45px; height: 45px; border-radius: 14px;
+      display: grid; place-items: center; color: white; font-size: 23px;
+      background: linear-gradient(145deg, var(--sky), var(--blue-dark));
+      box-shadow: 0 7px 16px rgba(11,79,156,.22);
+    }
+    .brand small { display: block; color: var(--muted); font-size: 11px; font-weight: 600; }
+    .nav-links { display: flex; gap: 22px; align-items: center; font-size: 14px; font-weight: 700; }
+    .nav-links a:hover { color: var(--sky); }
+    .menu-btn { display: none; border: 1px solid var(--border); background: white; border-radius: 12px; padding: 8px 12px; color: var(--blue); cursor: pointer; }
+    .hero {
+      overflow: hidden; position: relative; padding: 76px 0 72px;
+      background: radial-gradient(circle at 10% 10%, rgba(255,255,255,.2), transparent 30%),
+                  linear-gradient(125deg, #07366b 0%, #0b4f9c 58%, #2e83d7 100%);
+      color: white;
+    }
+    .hero::before, .hero::after { content: ""; position: absolute; border: 1px solid rgba(255,255,255,.12); border-radius: 50%; pointer-events: none; }
+    .hero::before { width: 370px; height: 370px; left: -95px; top: -165px; }
+    .hero::after { width: 250px; height: 250px; left: 90px; bottom: -190px; }
+    .hero-inner { display: grid; grid-template-columns: 1.25fr .75fr; gap: 36px; align-items: center; position: relative; z-index: 1; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,.3); background: rgba(255,255,255,.1); padding: 6px 13px; border-radius: 999px; font-size: 13px; }
+    h1 { font-size: clamp(30px, 4.5vw, 49px); line-height: 1.35; margin: 18px 0 14px; letter-spacing: -.5px; }
+    .hero p { max-width: 620px; color: #e5f2ff; margin: 0 0 26px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; border-radius: 12px; padding: 11px 19px; font-weight: 800; border: 1px solid transparent; cursor: pointer; transition: transform .2s, box-shadow .2s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-white { background: white; color: var(--blue-dark); box-shadow: 0 8px 18px rgba(0,0,0,.12); }
+    .btn-outline { color: white; border-color: rgba(255,255,255,.5); background: rgba(255,255,255,.07); }
+    .hero-art { min-height: 250px; display: grid; place-items: center; }
+    .seal { width: min(270px, 75vw); aspect-ratio: 1; border-radius: 50%; border: 1px solid rgba(255,255,255,.42); background: radial-gradient(circle, rgba(255,255,255,.19), rgba(255,255,255,.035) 68%); display: grid; place-items: center; position: relative; box-shadow: 0 25px 55px rgba(0,0,0,.13), inset 0 0 0 12px rgba(255,255,255,.04); }
+    .seal::before { content: ""; position: absolute; inset: 17px; border: 1px dashed rgba(255,255,255,.55); border-radius: 50%; }
+    .seal-content { text-align: center; padding: 25px; }
+    .seal-icon { font-size: 62px; line-height: 1.2; }
+    .seal-content strong { display: block; font-size: 19px; margin-top: 8px; }
+    .seal-content span { font-size: 12px; color: #e2f0ff; }
+    .stats-wrap { margin-top: -28px; position: relative; z-index: 3; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .stat { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 20px; box-shadow: var(--shadow); display: flex; align-items: center; gap: 13px; }
+    .stat-icon { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 13px; background: var(--blue-light); font-size: 23px; }
+    .stat strong { display: block; color: var(--blue-dark); font-size: 16px; }
+    .stat span { display: block; color: var(--muted); font-size: 12px; }
+    section { padding: 72px 0; }
+    .section-head { text-align: center; max-width: 680px; margin: 0 auto 34px; }
+    .section-head .tag { color: var(--blue); background: var(--blue-light); border-radius: 999px; padding: 5px 12px; display: inline-block; font-size: 12px; font-weight: 800; }
+    h2 { color: var(--blue-dark); font-size: clamp(25px, 3vw, 34px); line-height: 1.4; margin: 12px 0 10px; }
+    .section-head p { color: var(--muted); margin: 0; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .panel { background: white; border: 1px solid var(--border); border-radius: 20px; padding: 26px; box-shadow: var(--shadow); }
+    .panel h3 { color: var(--blue-dark); margin: 0 0 10px; font-size: 20px; }
+    .panel p { color: var(--muted); margin: 0; }
+    .goal-list { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 12px; }
+    .goal-list li { display: flex; align-items: flex-start; gap: 10px; }
+    .check { color: var(--blue); background: var(--blue-light); border-radius: 8px; min-width: 27px; height: 27px; display: grid; place-items: center; font-weight: 900; }
+    .activities { background: #edf5ff; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card { background: white; border: 1px solid var(--border); border-radius: 18px; overflow: hidden; transition: transform .22s, box-shadow .22s; }
+    .card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .card-top { height: 125px; display: grid; place-items: center; font-size: 48px; background: linear-gradient(135deg, #d8ebff, #f2f8ff); }
+    .card-body { padding: 20px; }
+    .card-body h3 { margin: 0 0 7px; color: var(--blue-dark); font-size: 18px; }
+    .card-body p { margin: 0; color: var(--muted); font-size: 14px; }
+    .notice { margin-top: 22px; border: 1px dashed #9fc9f6; background: rgba(255,255,255,.65); border-radius: 12px; padding: 12px 15px; color: #4c6783; font-size: 13px; }
+    .news-list { display: grid; gap: 14px; }
+    .news-item { display: flex; gap: 15px; align-items: flex-start; padding: 19px; border-radius: 16px; border: 1px solid var(--border); background: white; }
+    .news-icon { min-width: 46px; height: 46px; display: grid; place-items: center; border-radius: 13px; background: var(--blue-light); font-size: 22px; }
+    .news-item h3 { margin: 0 0 4px; font-size: 17px; color: var(--blue-dark); }
+    .news-item p { margin: 0; color: var(--muted); font-size: 14px; }
+    .contact { background: linear-gradient(135deg, #07366b, #0b4f9c); color: white; }
+    .contact .section-head h2 { color: white; }
+    .contact .section-head p { color: #d8eaff; }
+    .contact-box { max-width: 720px; margin: auto; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2); border-radius: 20px; padding: 26px; text-align: center; }
+    .contact-box p { color: #e2f0ff; margin-top: 0; }
+    .contact-box .btn { background: white; color: var(--blue-dark); }
+    footer { background: #05284f; color: #d8eaff; padding: 23px 0; font-size: 13px; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .back-top { position: fixed; bottom: 18px; left: 18px; width: 44px; height: 44px; border: 0; border-radius: 14px; color: white; background: var(--blue); box-shadow: var(--shadow); cursor: pointer; display: none; z-index: 15; }
+    .back-top.show { display: block; }
+    @media (max-width: 760px) {
+      .nav { min-height: 68px; }
+      .brand { font-size: 13px; }
+      .brand-mark { width: 40px; height: 40px; }
+      .menu-btn { display: block; }
+      .nav-links { display: none; position: absolute; top: 68px; right: 4%; left: 4%; background: white; padding: 14px; border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); flex-direction: column; align-items: stretch; gap: 0; }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 10px 8px; border-radius: 8px; }
+      .nav-links a:hover { background: var(--blue-light); }
+      .hero { padding: 48px 0 56px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 22px; }
+      .hero-art { min-height: auto; }
+      .seal { width: 190px; }
+      .seal-icon { font-size: 45px; }
+      .seal-content strong { font-size: 16px; }
+      .stats { grid-template-columns: 1fr; gap: 10px; }
+      .stat { padding: 14px; }
+      section { padding: 54px 0; }
+      .about-grid, .cards { grid-template-columns: 1fr; }
+      .card-top { height: 105px; }
+      .panel { padding: 21px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
+
+    /* إدارة الأخبار والإعلانات */
+.news-tools {
+  margin-top: 24px;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+
+.news-tools h3 {
+  margin: 0 0 12px;
+  color: var(--blue-dark);
+}
+
+.news-tools button,
+.news-tools input,
+.news-tools select,
+.news-tools textarea {
+  font: inherit;
+}
+
+.news-tools input,
+.news-tools select,
+.news-tools textarea {
+  display: block;
+  width: 100%;
+  margin: 8px 0 14px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+}
+
+.news-tools textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.news-tools button {
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 16px;
+  background: var(--blue);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.news-tools .delete-post {
+  background: #b42318;
+  margin-top: 12px;
+}
+
+.news-tools .cancel-btn {
+  background: #62758a;
+  margin-right: 8px;
+}
+
+.news-tools .admin-form {
+  margin-top: 18px;
+}
+
+.news-tools [hidden] {
+  display: none !important;
+}
+
+.saved-post {
+  margin-top: 14px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #f7faff;
+}
+
+.saved-post h4 {
+  margin: 8px 0;
+  color: var(--blue-dark);
+}
+
+.saved-post p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  margin: 0;
+  color: var(--muted);
+}
+
+.post-type {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: var(--blue-light);
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+@media (max-width: 480px) {
+  .news-tools {
+    padding: 15px;
+  }
+}
+  </style>
+</head>
+<body>
+  <div class="topline"></div>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="العودة للرئيسية">
+        <span class="brand-mark">🎓</span>
+        <span>اتحاد طلاب المطرية<small>دقهلية التعليمية</small></span>
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">☰ القائمة</button>
+      <nav class="nav-links" id="navLinks" aria-label="القائمة الرئيسية">
+        <a href="#home">الرئيسية</a>
+        <a href="#about">عن الاتحاد</a>
+        <a href="#activities">الأنشطة</a>
+        <a href="#news">الأخبار</a>
+        <a href="#contact">تواصل معنا</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-inner">
+        <div>
+          <span class="eyebrow">🎓 معًا من أجل طالبٍ أكثر مشاركة</span>
+          <h1>اتحاد طلاب إدارة المطرية دقهلية التعليمية</h1>
+          <p>مساحة تجمع أفكار الطلاب ومواهبهم، وتشجّع على التعاون والمشاركة الإيجابية في الحياة المدرسية.</p>
+          <div class="actions">
+            <a class="btn btn-white" href="#about">تعرّف على الاتحاد ←</a>
+            <a class="btn btn-outline" href="#activities">اكتشف الأنشطة</a>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="seal">
+            <div class="seal-content">
+              <div class="seal-icon">🎓</div>
+              <strong>صوت الطلاب</strong>
+              <span>مشاركة · إبداع · تعاون</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container stats-wrap" aria-label="مبادئ الاتحاد">
+      <div class="stats">
+        <div class="stat"><div class="stat-icon">🤝</div><div><strong>روح الفريق</strong><span>نعمل معًا وننجح معًا</span></div></div>
+        <div class="stat"><div class="stat-icon">💡</div><div><strong>أفكار مبتكرة</strong><span>نستمع للأفكار ونشجع المبادرات</span></div></div>
+        <div class="stat"><div class="stat-icon">🌟</div><div><strong>مشاركة إيجابية</strong><span>لكل طالب فرصة للمساهمة</span></div></div>
+      </div>
+    </div>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <span class="tag">عن الاتحاد</span>
+          <h2>معًا نصنع تجربة مدرسية أفضل</h2>
+          <p>يساعد اتحاد الطلاب على تنمية روح المسؤولية والحوار والعمل الجماعي داخل المجتمع المدرسي.</p>
+        </div>
+        <div class="about-grid">
+          <article class="panel">
+            <h3>رسالتنا</h3>
+            <p>دعم مشاركة الطلاب في الأنشطة المدرسية، وإتاحة مساحة للأفكار والمبادرات التي تسهم في بيئة تعليمية إيجابية ومحفزة.</p>
+          </article>
+          <article class="panel">
+            <h3>أهدافنا</h3>
+            <ul class="goal-list">
+              <li><span class="check">✓</span><span>تنمية مهارات القيادة والتعاون والمسؤولية.</span></li>
+              <li><span class="check">✓</span><span>تشجيع المواهب والمبادرات الطلابية.</span></li>
+              <li><span class="check">✓</span><span>تعزيز التواصل الإيجابي بين الطلاب والمدرسة.</span></li>
+              <li><span class="check">✓</span><span>دعم الأنشطة الثقافية والعلمية والرياضية.</span></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="activities" id="activities">
+      <div class="container">
+        <div class="section-head">
+          <span class="tag">الأنشطة الطلابية</span>
+          <h2>مساحات للتعلّم والإبداع</h2>
+          <p>أمثلة لأنواع الأنشطة التي يمكن عرضها على الموقع، ويمكن تعديلها وفق أنشطة الاتحاد الفعلية.</p>
+        </div>
+        <div class="cards">
+          <article class="card"><div class="card-top">📚</div><div class="card-body"><h3>أنشطة ثقافية</h3><p>مسابقات القراءة والإلقاء والمعلومات العامة، وتنمية مهارات التعبير والحوار.</p></div></article>
+          <article class="card"><div class="card-top">🔬</div><div class="card-body"><h3>أنشطة علمية</h3><p>أفكار ومشروعات وتجارب تساعد الطلاب على الاستكشاف والتفكير الإبداعي.</p></div></article>
+          <article class="card"><div class="card-top">⚽</div><div class="card-body"><h3>أنشطة رياضية</h3><p>تشجيع اللياقة والروح الرياضية والعمل الجماعي والمنافسة الإيجابية.</p></div></article>
+       <article class="card"><div class="card-top">🤝</div> <div class="card-body"><h3>أنشطة اجتماعية</h3> <p>تعزيز التعاون والتكافل بين الطلاب، وتنمية روح المسؤولية والمشاركة في خدمة المجتمع.</p></div></article>
+      <article class="card"><div class="card-top">🎨</div><div class="card-body"><h3>أنشطة فنية</h3><p>تنمية المواهب والإبداع من خلال الرسم والتلوين والأعمال اليدوية والمسابقات الفنية.</p> </div></article>
+        </div>
+        <div class="notice">تنبيه: هذه الأقسام تعريفية تجريبية، وليست إعلانًا عن فعاليات أو مسابقات قائمة حاليًا.</div>
+      </div>
+    </section>
+
+    <section id="news">
+      <div class="container">
+        <div class="section-head">
+          <span class="tag">الأخبار والإعلانات</span>
+          <h2>آخر المستجدات</h2>
+          <p>مكان مخصص لنشر أخبار الاتحاد وإعلاناته الرسمية بعد مراجعتها واعتمادها.</p>
+        </div>
+        <div class="news-tools">
+  <h3>إدارة الأخبار والإعلانات</h3>
+
+  <button type="button" id="toggleAdmin">
+    + إضافة خبر أو إعلان
+  </button>
+
+  <form id="postForm" class="admin-form" hidden>
+    <label for="postType">نوع المنشور</label>
+    <select id="postType" required>
+      <option value="خبر">خبر</option>
+      <option value="إعلان">إعلان</option>
+    </select>
+
+    <label for="postTitle">عنوان المنشور</label>
+    <input
+      id="postTitle"
+      type="text"
+      maxlength="100"
+      placeholder="اكتب عنوان الخبر أو الإعلان"
+      required
+    >
+
+    <label for="postContent">التفاصيل</label>
+    <textarea
+      id="postContent"
+      maxlength="3000"
+      placeholder="اكتب تفاصيل المنشور هنا"
+      required
+    ></textarea>
+
+    <button type="submit">نشر المنشور</button>
+    <button type="button" id="cancelAdmin" class="cancel-btn">
+      إلغاء
+    </button>
+  </form>
+
+  <p id="postStatus" role="status" aria-live="polite"></p>
+
+  <h3>المنشورات المضافة</h3>
+  <div id="savedPosts"></div>
+</div>
+        <div class="notice">لا توجد في هذه النسخة لوحة تحكم لنشر الأخبار. يلزم تطويرها وربطها بقاعدة بيانات إذا أردتم تحديث المحتوى دون تعديل الكود.</div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="section-head">
+          <span class="tag">تواصل معنا</span>
+          <h2>يسعدنا سماع أفكاركم</h2>
+          <p>يمكن تخصيص هذا القسم لاحقًا ببيانات التواصل الرسمية التي توافق الإدارة على نشرها.</p>
+        </div>
+        <div class="contact-box">
+          <p>لم تُضف بيانات اتصال رسمية بعد. تجنّب نشر أرقام شخصية أو بيانات الطلاب على الموقع العام.</p>
+          <a class="btn" href="#home">العودة إلى الرئيسية ↑</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> اتحاد طلاب إدارة المطرية دقهلية التعليمية</span>
+      <span>الموقع التعريفي — نسخة أولية</span>
+    </div>
+  </footer>
+  <button class="back-top" id="backTop" aria-label="العودة إلى أعلى الصفحة">↑</button>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    const backTop = document.getElementById('backTop');
+
+    menuBtn.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      backTop.classList.toggle('show', window.scrollY > 350);
+    });
+
+    backTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // نظام الأخبار والإعلانات
+const postForm = document.getElementById("postForm");
+const toggleAdmin = document.getElementById("toggleAdmin");
+const cancelAdmin = document.getElementById("cancelAdmin");
+const savedPosts = document.getElementById("savedPosts");
+const postStatus = document.getElementById("postStatus");
+
+const storageKey = "mataria_student_union_posts";
+
+function loadPosts() {
+  try {
+    const data = localStorage.getItem(storageKey);
+    const posts = data ? JSON.parse(data) : [];
+    return Array.isArray(posts) ? posts.filter(
+      post =>
+        post &&
+        typeof post.id === "string" &&
+        typeof post.type === "string" &&
+        typeof post.title === "string" &&
+        typeof post.content === "string"
+    ) : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function savePosts(posts) {
+  try {
+    localStorage.setItem(storageKey, JSON.stringify(posts));
+    return true;
+  } catch (error) {
+    postStatus.textContent =
+      "تعذر الحفظ. تأكد من مساحة التخزين وإعدادات المتصفح.";
+    return false;
+  }
+}
+
+function renderPosts() {
+  const posts = loadPosts();
+  savedPosts.replaceChildren();
+
+  if (posts.length === 0) {
+    const empty = document.createElement("p");
+    empty.textContent = "لم تتم إضافة منشورات جديدة حتى الآن.";
+    savedPosts.appendChild(empty);
+    return;
+  }
+
+  posts.slice().reverse().forEach(post => {
+    const card = document.createElement("article");
+    card.className = "saved-post";
+
+    const type = document.createElement("span");
+    type.className = "post-type";
+    type.textContent = post.type;
+
+    const title = document.createElement("h4");
+    title.textContent = post.title;
+
+    const content = document.createElement("p");
+    content.textContent = post.content;
+
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.className = "delete-post";
+    remove.textContent = "حذف المنشور";
+
+    remove.addEventListener("click", () => {
+      const updated = loadPosts().filter(
+        item => item.id !== post.id
+      );
+
+      if (savePosts(updated)) {
+        renderPosts();
+        postStatus.textContent = "تم حذف المنشور.";
+      }
+    });
+
+    card.append(type, title, content, remove);
+    savedPosts.appendChild(card);
+  });
+}
+
+toggleAdmin.addEventListener("click", () => {
+  postForm.hidden = !postForm.hidden;
+
+  if (!postForm.hidden) {
+    document.getElementById("postTitle").focus();
+    toggleAdmin.textContent = "إخفاء النموذج";
+  } else {
+    toggleAdmin.textContent = "+ إضافة خبر أو إعلان";
+  }
+});
+
+cancelAdmin.addEventListener("click", () => {
+  postForm.reset();
+  postForm.hidden = true;
+  toggleAdmin.textContent = "+ إضافة خبر أو إعلان";
+  postStatus.textContent = "";
+});
+
+postForm.addEventListener("submit", event => {
+  event.preventDefault();
+
+  const type = document.getElementById("postType").value;
+  const title = document.getElementById("postTitle").value.trim();
+  const content = document.getElementById("postContent").value.trim();
+
+  if (!title || !content) {
+    postStatus.textContent = "اكتب العنوان والتفاصيل أولًا.";
+    return;
+  }
+
+  const posts = loadPosts();
+
+  posts.push({
+    id: Date.now().toString() + "-" + Math.random().toString(36).slice(2),
+    type,
+    title,
+    content
+  });
+
+  if (savePosts(posts)) {
+    renderPosts();
+    postForm.reset();
+    postForm.hidden = true;
+    toggleAdmin.textContent = "+ إضافة خبر أو إعلان";
+    postStatus.textContent = "تم حفظ المنشور على هذا الجهاز.";
+  }
+});
+
+// عرض المنشورات المحفوظة عند فتح الموقع
+renderPosts();
+  </script>
+</body>
+</html>
