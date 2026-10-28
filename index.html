@@ -243,6 +243,86 @@
     padding: 15px;
   }
 }
+    
+/* قسم أعضاء اتحاد الطلاب */
+.members {
+  background: #f7faff;
+}
+
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.member-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 24px 18px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  border-top: 4px solid var(--sky);
+  transition: transform .2s, box-shadow .2s;
+}
+
+.member-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(11, 79, 156, .14);
+}
+
+.member-number {
+  width: 42px;
+  height: 42px;
+  margin: 0 auto 12px;
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+  background: var(--blue-light);
+  color: var(--blue);
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.member-card h3 {
+  margin: 0 0 10px;
+  color: var(--blue-dark);
+  font-size: 17px;
+}
+
+.member-name {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.member-card.leader {
+  border-top-color: #e3ad35;
+  background: linear-gradient(180deg, #fffdf5, #fff);
+}
+
+.member-card.leader .member-number {
+  background: #fff2cb;
+  color: #8a6100;
+}
+
+@media (max-width: 760px) {
+  .members-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .member-card {
+    padding: 19px 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .members-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -258,6 +338,7 @@
         <a href="#home">الرئيسية</a>
         <a href="#about">عن الاتحاد</a>
         <a href="#activities">الأنشطة</a>
+        <a href="#members">الأعضاء</a>
         <a href="#news">الأخبار</a>
         <a href="#contact">تواصل معنا</a>
       </nav>
@@ -338,6 +419,75 @@
         <div class="notice">تنبيه: هذه الأقسام تعريفية تجريبية، وليست إعلانًا عن فعاليات أو مسابقات قائمة حاليًا.</div>
       </div>
     </section>
+    
+<section class="members" id="members">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag">فريق الاتحاد</span>
+      <h2>أعضاء اتحاد الطلاب</h2>
+      <p>نتعاون معًا لخدمة الطلاب ودعم الأنشطة والمبادرات المدرسية.</p>
+    </div>
+
+    <div class="members-grid">
+
+      <article class="member-card leader">
+        <div class="member-number">🌟</div>
+        <h3>الرائد العام</h3>
+        <p class="member-name">الأستاذ محمود الصغير</p>
+      </article>
+
+      <article class="member-card">
+        <div class="member-number">☆</div>
+        <h3>مسؤول الاتحاد</h3>
+        <p class="member-name">الأستاذ محمد السحراوي</p>
+      </article>
+
+      <article class="member-card">
+        <div class="member-number">🎓</div>
+        <h3>أمين الاتحاد</h3>
+        <p class="member-name">مروان أحمد فرج</p>
+      </article>
+
+      <article class="member-card">
+        <div class="member-number">💡</div>
+        <h3>أمين مساعد الاتحاد</h3>
+        <p class="member-name">شروق هاني صبح</p>
+      </article>
+
+      <article class="member-card">
+        <div class="member-number">🔬</div>
+        <h3>مقرر اللجنة العلمية</h3>
+        <p class="member-name">أحمد محمد عرنوس</p>
+      </article>
+
+      <article class="member-card">
+        <div class="member-number">⚽</div>
+        <h3>مقرر اللجنة الرياضية والكشفية</h3>
+        <p class="member-name">يوسف محمد أبو عبده</p>
+      </article>
+
+      <article class="member-card">
+        <div class="member-number">🎨</div>
+        <h3>مقرر اللجنة الفنية</h3>
+        <p class="member-name">إيمان أحمد الباتعي</p>
+      </article>
+
+      <article class="member-card">
+        <div class="member-number">📚</div>
+        <h3>مقرر اللجنة الثقافية والدينية</h3>
+        <p class="member-name">مريم محمد شطا</p>
+      </article>
+
+      <article class="member-card">
+        <div class="member-number">🤝</div>
+        <h3>مقرر اللجنة الاجتماعية</h3>
+        <p class="member-name">اسماء حسن غانم</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
 
     <section id="news">
       <div class="container">
@@ -572,7 +722,7 @@ postForm.addEventListener("submit", event => {
     postStatus.textContent = "تم حفظ المنشور على هذا الجهاز.";
   }
 });
-
+    
 // عرض المنشورات المحفوظة عند فتح الموقع
 renderPosts();
   </script>
